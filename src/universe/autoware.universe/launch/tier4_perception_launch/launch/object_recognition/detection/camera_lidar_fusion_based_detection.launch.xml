@@ -33,6 +33,7 @@
   <arg name="camera_info0" default="/sensing/camera/traffic_light/camera_info" description="camera info topic name"/>
   <arg name="detection_rois0" default="rois0" description="detection rois output topic name"/>
   <arg name="image_number" default="1" description="choose image raw number(1-8)"/>
+  <arg name="voxel_grid_based_euclidean_param_path" default="$(find-pkg-share autoware_launch)/config/perception/object_recognition/detection/clustering/voxel_grid_based_euclidean_cluster.param.yaml"/>
 
   <!-- Pointcloud filter -->
   <group>
@@ -50,8 +51,12 @@
   <!-- Clustering -->
   <group>
     <push-ros-namespace namespace="clustering"/>
+    <!-- Euclidean Cluster -->
     <group>
-      <node name="euclidean_cluster" pkg="euclidean_cluster_v2" exec="euclidean_cluster_node" output="screen">
+      <node name="euclidean_cluster" pkg="euclidean_cluster_v2" exec="voxel_grid_based_euclidean_cluster_node" output="screen"
+      args="--ros-args --params-file $(var voxel_grid_based_euclidean_param_path)">
+        <remap from="input" to="/perception/object_recognition/detection/pointcloud_map_filtered/pointcloud"/>
+        <remap from="output" to="clusters"/>
       </node>
     </group>
 

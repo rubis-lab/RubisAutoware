@@ -7,7 +7,7 @@ setup(
     version='0.0.0',
     packages=find_packages(exclude=['test']),
     py_modules=[
-        'euclidean_cluster_v2.euclidean_cluster_node',
+        'euclidean_cluster_v2.voxel_grid_based_euclidean_cluster_node',
     ],
     data_files=[
         ('share/ament_index/resource_index/packages',
@@ -23,7 +23,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'euclidean_cluster_node = euclidean_cluster_v2.euclidean_cluster_node:main',
+            'voxel_grid_based_euclidean_cluster_node = euclidean_cluster_v2.voxel_grid_based_euclidean_cluster_node:main',
         ],
     },
 )

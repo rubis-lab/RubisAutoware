@@ -7,7 +7,7 @@ from rosgraph_msgs.msg import Clock
 
 class EuclideanClusterNode(Node):
     def __init__(self):
-        super().__init__('euclidean_cluster')
+        super().__init__('voxel_grid_based_euclidean_cluster')
 
         # Define QoS profile to handle incompatible QoS settings
         qos_profile = QoSProfile(

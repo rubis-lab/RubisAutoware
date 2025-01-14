@@ -33,6 +33,10 @@
   <arg name="input/radar" default="/sensing/radar/detected_objects"/>
   <arg name="radar_lanelet_filtering_range_param" default="$(find-pkg-share detected_object_validation)/config/object_lanelet_filter.param.yaml"/>
   <arg name="radar_object_clustering_param_path" default="$(find-pkg-share radar_object_clustering)/config/radar_object_clustering.param.yaml"/>
+  <arg
+    name="object_recognition_detection_voxel_grid_based_euclidean_cluster_param_path"
+    default="$(find-pkg-share autoware_launch)/config/perception/object_recognition/detection/clustering/voxel_grid_based_euclidean_cluster.param.yaml"
+  />
 
   <!-- Camera-LiDAR fusion parameters -->
   <arg name="remove_unknown" default="true"/>
@@ -105,6 +109,7 @@
       <arg name="use_low_height_cropbox" value="$(var use_low_height_cropbox)"/>
       <arg name="use_roi_based_cluster" value="$(var use_roi_based_cluster)"/>
       <arg name="detection_by_tracker_param_path" value="$(var detection_by_tracker_param_path)"/>
+      <arg name="voxel_grid_based_euclidean_param_path" value="$(var object_recognition_detection_voxel_grid_based_euclidean_cluster_param_path)"/>
     </include>
   </group>
 
