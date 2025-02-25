@@ -15,7 +15,7 @@ include_directories(
 
 ament_auto_add_library(cluster_lib SHARED
   lib/utils.cpp
-  lib/euclidean_cluster.cpp
+  # lib/euclidean_cluster.cpp
   lib/voxel_grid_based_euclidean_cluster.cpp
 )
 
@@ -29,18 +29,18 @@ target_include_directories(cluster_lib
     $<INSTALL_INTERFACE:include>
 )
 
-ament_auto_add_library(euclidean_cluster_node_core SHARED
-  src/euclidean_cluster_node.cpp
-)
-target_link_libraries(euclidean_cluster_node_core
-  ${PCL_LIBRARIES}
-  cluster_lib
-)
+# ament_auto_add_library(euclidean_cluster_node_core SHARED
+#   src/euclidean_cluster_node.cpp
+# )
+# target_link_libraries(euclidean_cluster_node_core
+#   ${PCL_LIBRARIES}
+#   cluster_lib
+# )
 
-rclcpp_components_register_node(euclidean_cluster_node_core
-  PLUGIN "euclidean_cluster::EuclideanClusterNode"
-  EXECUTABLE euclidean_cluster_node
-)
+# rclcpp_components_register_node(euclidean_cluster_node_core
+#   PLUGIN "euclidean_cluster::EuclideanClusterNode"
+#   EXECUTABLE euclidean_cluster_node
+# )
 
 ament_auto_add_library(voxel_grid_based_euclidean_cluster_node_core SHARED
   src/voxel_grid_based_euclidean_cluster_node.cpp

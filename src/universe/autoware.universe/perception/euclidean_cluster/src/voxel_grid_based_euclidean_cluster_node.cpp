@@ -72,8 +72,9 @@ void VoxelGridBasedEuclideanClusterNode::onPointCloud(
 
   // build output msg
   tier4_perception_msgs::msg::DetectedObjectsWithFeature output;
-  convertPointCloudClusters2Msg(input_msg->header, clusters, output);
+  output.header = input_msg->header;
   cluster_pub_->publish(output);
+  convertPointCloudClusters2Msg(input_msg->header, clusters, output);
 
   // build debug msg
   if (debug_pub_->get_subscription_count() < 1) {

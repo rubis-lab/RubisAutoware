@@ -53,11 +53,11 @@
     <push-ros-namespace namespace="clustering"/>
     <!-- Euclidean Cluster -->
     <group>
-      <node name="euclidean_cluster" pkg="euclidean_cluster_v2" exec="voxel_grid_based_euclidean_cluster_node" output="screen"
-      args="--ros-args --params-file $(var voxel_grid_based_euclidean_param_path)">
-        <remap from="input" to="/perception/object_recognition/detection/pointcloud_map_filtered/pointcloud"/>
-        <remap from="output" to="clusters"/>
-      </node>
+      <include file="$(find-pkg-share euclidean_cluster)/launch/voxel_grid_based_euclidean_cluster.launch.xml">
+        <arg name="input_pointcloud" value="/perception/object_recognition/detection/pointcloud_map_filtered/pointcloud"/>
+        <arg name="output_clusters" value="clusters"/>
+        <arg name="use_low_height_cropbox" value="$(var use_low_height_cropbox)"/>
+      </include>
     </group>
 
     <group>
