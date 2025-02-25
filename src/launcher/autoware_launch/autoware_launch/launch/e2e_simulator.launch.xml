@@ -5,7 +5,10 @@
   <arg name="vehicle_model" default="carla_t2_vehicle" description="vehicle model name"/>
   <arg name="sensor_model" default="carla_t2_sensor_kit" description="sensor model name"/>
   <arg name="data_path" default="$(env HOME)/autoware_data" description="packages data and artifacts directory path"/>
+
   <arg name="convert_tf_test" default="false"/>
+  <arg name="shift_y_axis" default="false"/>
+  
   <arg name="perception_mode" default="camera_lidar_fusion" description="select perception mode. camera_lidar_radar_fusion, camera_lidar_fusion, lidar_radar_fusion, lidar, radar"/>
 
   <!-- launch module preset -->
@@ -42,6 +45,11 @@
   <arg name="rviz_config" default="$(find-pkg-share autoware_launch)/rviz/autoware.rviz" description="rviz config"/>
 
   <group scoped="false">
+
+    <group if="$(var shift_y_axis)">
+      <node pkg="tf2_ros" exec="static_transform_publisher" name="carla_map_to_map_broadcaster" args="0 1.0 0 0 0 0 map carla_map" />
+    </group>
+    
     <include file="$(find-pkg-share autoware_launch)/launch/autoware.launch.xml">
       <!-- Common -->
       <arg name="perception_mode" value="$(var perception_mode)"/>
