@@ -59,7 +59,7 @@ void VoxelGridBasedEuclideanClusterNode::onPointCloud(
   if (input_msg->data.empty()) {
     // NOTE: prevent pcl log spam
     RCLCPP_WARN_STREAM_THROTTLE(
-      this->get_logger(), *this->get_clock(), 1000, "Empty sensor points!");
+      this->get_logger(), *this->get_clock(), 1000, "No obstacles detected by LiDAR!");
   } else {
     pcl::fromROSMsg(*input_msg, *raw_pointcloud_ptr);
   }
